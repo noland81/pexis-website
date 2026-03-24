@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pexis — Nen tang ket noi nha cung cap va dai ly</title>
+    <meta name="description" content="Pexis - Nen tang B2B ket noi nha cung cap (lab in an) voi dai ly, studio, tiem anh. Quan ly don hang, san xuat, chat real-time.">
+    <meta name="keywords" content="pexis, in an, lab, dai ly, studio, quan ly don hang, B2B">
+    <link rel="icon" type="image/png" href="icon.png">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* ===== CSS Reset & Base ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --teal: #2D6A6A;
+            --teal-light: #3A8585;
+            --teal-dark: #1F4F4F;
+            --ivory: #F5F0EB;
+            --ivory-warm: #EDE7E0;
+            --dark: #2C3338;
+            --dark-soft: #3D454B;
+            --gray: #6B7280;
+            --gray-light: #9CA3AF;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+            --shadow-xl: 0 16px 48px rgba(0,0,0,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+            --radius-2xl: 24px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg: var(--ivory);
+            --bg-card: var(--white);
+            --bg-card-alt: #F8F5F1;
+            --text-primary: var(--dark);
+            --text-secondary: var(--gray);
+            --text-muted: var(--gray-light);
+            --border: rgba(44, 51, 56, 0.08);
+            --nav-bg: rgba(245, 240, 235, 0.85);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1A1D20;
+                --bg-card: #242830;
+                --bg-card-alt: #2A2E36;
+                --text-primary: #F0EDE8;
+                --text-secondary: #9CA3AF;
+                --text-muted: #6B7280;
+                --border: rgba(255, 255, 255, 0.08);
+                --nav-bg: rgba(26, 29, 32, 0.88);
+                --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+                --shadow-md: 0 4px 16px rgba(0,0,0,0.25);
+                --shadow-lg: 0 8px 32px rgba(0,0,0,0.3);
+                --shadow-xl: 0 16px 48px rgba(0,0,0,0.35);
+            }
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, 'SF Pro Display', system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* ===== Utility ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section { padding: 100px 0; }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--teal);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header .section-subtitle { margin: 0 auto; }
+
+        /* ===== Animations ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-up-delay-1 { transition-delay: 0.1s; }
+        .fade-up-delay-2 { transition-delay: 0.2s; }
+        .fade-up-delay-3 { transition-delay: 0.3s; }
+        .fade-up-delay-4 { transition-delay: 0.4s; }
+
+        /* ===== Navigation ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-primary);
+        }
+
+        .nav-logo img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--teal); }
+
+        .nav-cta {
+            background: var(--teal);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600 !important;
+            transition: background var(--transition), transform var(--transition) !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--teal-light) !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-mobile-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 8px;
+        }
+
+        /* ===== Buttons ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: none;
+            line-height: 1;
+        }
+
+        .btn-primary {
+            background: var(--teal);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(45, 106, 106, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: var(--teal-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 106, 106, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1.5px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 13px;
+            border-radius: 10px;
+        }
+
+        .btn-icon { width: 18px; height: 18px; }
+
+        /* ===== Badge ===== */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-pending {
+            background: rgba(245, 158, 11, 0.12);
+            color: #D97706;
+        }
+
+        .badge-new {
+            background: rgba(45, 106, 106, 0.12);
+            color: var(--teal);
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -20%;
+            width: 140%;
+            height: 200%;
+            background: radial-gradient(ellipse at 50% 0%, rgba(45, 106, 106, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px 6px 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-badge .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10B981;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 50%, #4AADAD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 64px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .hero-stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ===== About ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .about-content .section-subtitle { max-width: 100%; }
+
+        .about-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .about-feature {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .about-feature-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: rgba(45, 106, 106, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+        }
+
+        .about-feature h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .about-feature p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .about-visual {
+            background: var(--bg-card);
+            border-radius: var(--radius-2xl);
+            padding: 48px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .about-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .diagram-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
+        }
+
+        .diagram-icon-box {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .diagram-node-supplier .diagram-icon-box {
+            background: rgba(45, 106, 106, 0.15);
+            color: var(--teal);
+        }
+
+        .diagram-node-platform .diagram-icon-box {
+            background: var(--teal);
+            color: var(--white);
+            width: 80px;
+            height: 80px;
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(45, 106, 106, 0.3);
+        }
+
+        .diagram-node-dealer .diagram-icon-box {
+            background: rgba(45, 106, 106, 0.15);
+            color: var(--teal);
+        }
+
+        .diagram-node-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .diagram-node-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .diagram-arrow {
+            display: flex;
+            align-items: center;
+            color: var(--teal);
+            opacity: 0.5;
+        }
+
+        /* ===== Product Sections ===== */
+        .product-section { position: relative; }
+
+        .product-section.alt-bg { background: var(--bg-card-alt); }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .product-grid.reverse .product-info { order: 2; }
+        .product-grid.reverse .product-downloads { order: 1; }
+
+        .product-info .product-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .product-info h2 {
+            font-size: clamp(28px, 3.5vw, 38px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .product-info .product-desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .feature-item-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(45, 106, 106, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal);
+        }
+
+        .feature-item-icon i { width: 16px; height: 16px; }
+
+        .download-group { margin-bottom: 24px; }
+
+        .download-group-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .product-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-2xl);
+            padding: 40px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .product-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .product-card-icon.one-bg { background: linear-gradient(135deg, var(--teal), var(--teal-light)); }
+        .product-card-icon.connect-bg { background: linear-gradient(135deg, #4A90A4, #5CB8B2); }
+
+        .product-card-meta h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .product-card-meta p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .mobile-note {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(245, 158, 11, 0.06);
+            border: 1px solid rgba(245, 158, 11, 0.15);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .mobile-note i { color: #D97706; flex-shrink: 0; }
+
+        /* ===== How it Works ===== */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: var(--teal);
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .step-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background: rgba(45, 106, 106, 0.1);
+            color: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .step-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .step-arrow {
+            position: absolute;
+            right: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--teal);
+            opacity: 0.3;
+        }
+
+        .step-card:last-child .step-arrow { display: none; }
+
+        /* ===== Features Grid ===== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 28px 24px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(45, 106, 106, 0.2);
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            background: rgba(45, 106, 106, 0.1);
+            color: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ===== Download Section ===== */
+        .download-section {
+            background: var(--bg-card-alt);
+        }
+
+        .download-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .dl-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-2xl);
+            padding: 40px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-md);
+        }
+
+        .dl-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .dl-card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .dl-card-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .dl-card-header p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .dl-platform {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dl-platform:last-child { border-bottom: none; }
+
+        .dl-platform-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dl-platform-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(45, 106, 106, 0.08);
+            color: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dl-platform-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .dl-platform-detail {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            padding: 64px 0 32px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .footer { background: #111316; }
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand h3 {
+            color: var(--white);
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-brand h3 img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 320px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col li { margin-bottom: 10px; }
+
+        .footer-col a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color var(--transition);
+        }
+
+        .footer-col a:hover { color: var(--white); }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .footer-bottom a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover { color: var(--white); }
+
+        /* ===== Mobile Menu ===== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+            z-index: 99;
+        }
+
+        .mobile-menu.open { display: block; }
+
+        .mobile-menu a {
+            display: block;
+            padding: 12px 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .mobile-menu a:last-child { border-bottom: none; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1024px) {
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: repeat(2, 1fr); }
+            .step-arrow { display: none !important; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 64px 0; }
+            .nav-links { display: none; }
+            .nav-mobile-btn { display: block; }
+            .hero { padding: 110px 0 64px; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-visual { order: -1; }
+            .product-grid { grid-template-columns: 1fr; gap: 40px; }
+            .product-grid.reverse .product-info { order: unset; }
+            .product-grid.reverse .product-downloads { order: unset; }
+            .feature-list { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .download-cards { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+            .about-diagram { flex-direction: column; }
+            .diagram-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Navigation ===== -->
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="icon.png" alt="Pexis">
+                Pexis
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">Gioi thieu</a></li>
+                <li><a href="#supplier">Nha cung cap</a></li>
+                <li><a href="#dealer">Dai ly</a></li>
+                <li><a href="#how-it-works">Cach hoat dong</a></li>
+                <li><a href="#features">Tinh nang</a></li>
+                <li><a href="#download" class="nav-cta">Tai ve</a></li>
+            </ul>
+            <button class="nav-mobile-btn" onclick="toggleMobile()" aria-label="Menu">
+                <i data-lucide="menu" style="width:24px;height:24px;"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" onclick="closeMobile()">Gioi thieu</a>
+        <a href="#supplier" onclick="closeMobile()">Nha cung cap</a>
+        <a href="#dealer" onclick="closeMobile()">Dai ly</a>
+        <a href="#how-it-works" onclick="closeMobile()">Cach hoat dong</a>
+        <a href="#features" onclick="closeMobile()">Tinh nang</a>
+        <a href="#download" onclick="closeMobile()">Tai ve</a>
+    </div>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+        <div class="container">
+            <div class="fade-up">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Platform B2B cho nganh in an
+                </div>
+            </div>
+            <h1 class="fade-up fade-up-delay-1">
+                Ket noi <span class="gradient-text">nha cung cap</span><br>va dai ly trong mot nen tang
+            </h1>
+            <p class="fade-up fade-up-delay-2">
+                Pexis giup cac lab in an, xuong in quan ly don hang, san xuat va ket noi truc tiep voi dai ly, studio, tiem anh — tat ca trong mot he sinh thai bao mat va de su dung.
+            </p>
+            <div class="hero-buttons fade-up fade-up-delay-3">
+                <a href="#download" class="btn btn-primary">
+                    <i data-lucide="download" class="btn-icon"></i>
+                    Tai PexisOne
+                </a>
+                <a href="#download" class="btn btn-secondary">
+                    <i data-lucide="users" class="btn-icon"></i>
+                    Tai PexisConnect
+                </a>
+            </div>
+            <div class="hero-stats fade-up fade-up-delay-4">
+                <div class="hero-stat">
+                    <div class="hero-stat-value">100%</div>
+                    <div class="hero-stat-label">Du lieu local, bao mat</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">HTTPS</div>
+                    <div class="hero-stat-label">Ket noi ma hoa end-to-end</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="hero-stat-value">Real-time</div>
+                    <div class="hero-stat-label">Chat & cap nhat tuc thi</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content fade-up">
+                    <div class="section-label">
+                        <i data-lucide="info" style="width:14px;height:14px;"></i>
+                        Gioi thieu
+                    </div>
+                    <h2 class="section-title">Pexis la gi?</h2>
+                    <p class="section-subtitle">
+                        Pexis la nen tang B2B duoc thiet ke rieng cho nganh in an, ket noi truc tiep giua nha cung cap (lab, xuong in) voi mang luoi dai ly (studio, tiem anh, cua hang).
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i data-lucide="database" style="width:20px;height:20px;"></i>
+                            </div>
+                            <div>
+                                <h4>Du lieu luu tru local</h4>
+                                <p>Toan bo du lieu duoc luu tru tren may tinh cua nha cung cap voi SQLite. Khong phu thuoc vao cloud, khong lo mat du lieu.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i data-lucide="shield-check" style="width:20px;height:20px;"></i>
+                            </div>
+                            <div>
+                                <h4>Ket noi HTTPS bao mat</h4>
+                                <p>Su dung Cloudflare Tunnel de tao ket noi HTTPS an toan giua nha cung cap va dai ly. Khong can IP tinh hay mo port.</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">
+                                <i data-lucide="zap" style="width:20px;height:20px;"></i>
+                            </div>
+                            <div>
+                                <h4>Toc do & hieu suat</h4>
+                                <p>Ung dung desktop duoc toi uu hoa de chay nhanh, me muot tren ca Windows va macOS. Thao tac tuc thi, khong do tre.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual fade-up fade-up-delay-2">
+                    <div class="about-diagram">
+                        <div class="diagram-node diagram-node-supplier">
+                            <div class="diagram-icon-box">
+                                <i data-lucide="building-2" style="width:28px;height:28px;"></i>
+                            </div>
+                            <div class="diagram-node-label">Nha cung cap</div>
+                            <div class="diagram-node-sub">Lab, Xuong in</div>
+                        </div>
+                        <div class="diagram-arrow">
+                            <i data-lucide="arrow-right" style="width:24px;height:24px;"></i>
+                        </div>
+                        <div class="diagram-node diagram-node-platform">
+                            <div class="diagram-icon-box">
+                                <img src="icon.png" alt="Pexis" style="width:36px;height:36px;border-radius:8px;">
+                            </div>
+                            <div class="diagram-node-label">Pexis</div>
+                            <div class="diagram-node-sub">Nen tang ket noi</div>
+                        </div>
+                        <div class="diagram-arrow">
+                            <i data-lucide="arrow-right" style="width:24px;height:24px;"></i>
+                        </div>
+                        <div class="diagram-node diagram-node-dealer">
+                            <div class="diagram-icon-box">
+                                <i data-lucide="store" style="width:28px;height:28px;"></i>
+                            </div>
+                            <div class="diagram-node-label">Dai ly</div>
+                            <div class="diagram-node-sub">Studio, Tiem anh</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== For Suppliers ===== -->
+    <section class="section product-section alt-bg" id="supplier">
+        <div class="container">
+            <div class="product-grid">
+                <div class="product-info fade-up">
+                    <div class="product-name">PexisOne</div>
+                    <h2>Giai phap toan dien cho nha cung cap</h2>
+                    <p class="product-desc">
+                        PexisOne la ung dung danh cho chu lab, xuong in — giup quan ly toan bo hoat dong kinh doanh tu don hang, san xuat, nhan su den tai chinh trong mot giao dien thong nhat.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="clipboard-list" style="width:16px;height:16px;"></i></div>
+                            Quan ly don hang
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="file-text" style="width:16px;height:16px;"></i></div>
+                            Hoa don & bao gia
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="cog" style="width:16px;height:16px;"></i></div>
+                            Quan ly san xuat
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="users" style="width:16px;height:16px;"></i></div>
+                            Nhan su & cham cong
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="package" style="width:16px;height:16px;"></i></div>
+                            Quan ly kho hang
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="wallet" style="width:16px;height:16px;"></i></div>
+                            Thu chi & cong no
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="message-circle" style="width:16px;height:16px;"></i></div>
+                            Chat real-time
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="shield" style="width:16px;height:16px;"></i></div>
+                            Phan quyen tai khoan
+                        </div>
+                    </div>
+                    <div class="download-group">
+                        <div class="download-group-title">Desktop</div>
+                        <div class="download-buttons">
+                            <a href="#download-pexisone-win" class="btn btn-primary btn-sm">
+                                <i data-lucide="monitor" class="btn-icon"></i>
+                                Windows
+                            </a>
+                            <a href="#download-pexisone-mac" class="btn btn-secondary btn-sm">
+                                <i data-lucide="laptop" class="btn-icon"></i>
+                                macOS
+                            </a>
+                        </div>
+                    </div>
+                    <div class="download-group">
+                        <div class="download-group-title">Mobile</div>
+                        <div class="download-buttons">
+                            <span class="btn btn-sm" style="opacity:0.5;cursor:default;background:var(--bg-card);border:1.5px solid var(--border);color:var(--text-secondary);">
+                                <i data-lucide="smartphone" class="btn-icon"></i>
+                                iOS
+                                <span class="badge badge-pending">Dang cho phe duyet</span>
+                            </span>
+                            <span class="btn btn-sm" style="opacity:0.5;cursor:default;background:var(--bg-card);border:1.5px solid var(--border);color:var(--text-secondary);">
+                                <i data-lucide="smartphone" class="btn-icon"></i>
+                                Android
+                                <span class="badge badge-pending">Dang cho phe duyet</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card fade-up fade-up-delay-2">
+                    <div class="product-card-header">
+                        <div class="product-card-icon one-bg">
+                            <i data-lucide="building-2" style="width:24px;height:24px;"></i>
+                        </div>
+                        <div class="product-card-meta">
+                            <h3>PexisOne</h3>
+                            <p>Danh cho nha cung cap</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(45,106,106,0.06);border-radius:12px;">
+                            <i data-lucide="clipboard-list" style="width:20px;height:20px;color:var(--teal);"></i>
+                            <div>
+                                <div style="font-size:14px;font-weight:600;">Quan ly don hang thong minh</div>
+                                <div style="font-size:12px;color:var(--text-muted);">Tao, xu ly, theo doi don hang tu dai ly voi trang thai real-time</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(45,106,106,0.06);border-radius:12px;">
+                            <i data-lucide="cog" style="width:20px;height:20px;color:var(--teal);"></i>
+                            <div>
+                                <div style="font-size:14px;font-weight:600;">Theo doi san xuat</div>
+                                <div style="font-size:12px;color:var(--text-muted);">Phan cong, cap nhat tien do san xuat theo tung cong doan</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(45,106,106,0.06);border-radius:12px;">
+                            <i data-lucide="message-circle" style="width:20px;height:20px;color:var(--teal);"></i>
+                            <div>
+                                <div style="font-size:14px;font-weight:600;">Chat truc tiep voi dai ly</div>
+                                <div style="font-size:12px;color:var(--text-muted);">Trao doi thong tin, gui file, xac nhan don nhanh chong</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(45,106,106,0.06);border-radius:12px;">
+                            <i data-lucide="wallet" style="width:20px;height:20px;color:var(--teal);"></i>
+                            <div>
+                                <div style="font-size:14px;font-weight:600;">Quan ly tai chinh</div>
+                                <div style="font-size:12px;color:var(--text-muted);">Thu chi, cong no, hoa don — tat ca duoc ghi nhan chinh xac</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== For Dealers ===== -->
+    <section class="section product-section" id="dealer">
+        <div class="container">
+            <div class="product-grid reverse">
+                <div class="product-info fade-up">
+                    <div class="product-name">PexisConnect</div>
+                    <h2>Trai nghiem dat hang hien dai cho dai ly</h2>
+                    <p class="product-desc">
+                        PexisConnect giup dai ly, studio, tiem anh ket noi truc tiep voi nha cung cap — dat hang online, gui file, theo doi tien do va quan ly hoa don de dang.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i></div>
+                            Dat hang online
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="upload" style="width:16px;height:16px;"></i></div>
+                            Gui file truc tiep
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="message-circle" style="width:16px;height:16px;"></i></div>
+                            Chat voi nha cung cap
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="eye" style="width:16px;height:16px;"></i></div>
+                            Theo doi don hang
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="receipt" style="width:16px;height:16px;"></i></div>
+                            Xem hoa don & cong no
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-item-icon"><i data-lucide="star" style="width:16px;height:16px;"></i></div>
+                            Tich diem & uu dai
+                        </div>
+                    </div>
+                    <div class="download-group">
+                        <div class="download-group-title">Desktop</div>
+                        <div class="download-buttons">
+                            <a href="#download-pexisconnect-win" class="btn btn-primary btn-sm">
+                                <i data-lucide="monitor" class="btn-icon"></i>
+                                Windows
+                            </a>
+                            <a href="#download-pexisconnect-mac" class="btn btn-secondary btn-sm">
+                                <i data-lucide="laptop" class="btn-icon"></i>
+                                macOS
+                            </a>
+                        </div>
+                    </div>
+                    <div class="download-group">
+                        <div class="download-group-title">Mobile</div>
+                        <div class="download-buttons">
+                            <span class="btn btn-sm" style="opacity:0.5;cursor:default;background:var(--bg-card);border:1.5px solid var(--border);color:var(--text-secondary);">
+                                <i data-lucide="smartphone" class="btn-icon"></i>
+                                iOS
+                                <span class="badge badge-pending">Dang cho phe duyet</span>
+                            </span>
+                            <span class="btn btn-sm" style="opacity:0.5;cursor:default;background:var(--bg-card);border:1.5px solid var(--border);color:var(--text-secondary);">
+                                <i data-lucide="smartphone" class="btn-icon"></i>
+                                Android
+                                <span class="badge badge-pending">Dang cho phe duyet</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card fade-up fade-up-delay-2">
+                    <div class="product-card-header">
+                        <div class="product-card-icon connect-bg">
+                            <i data-lucide="store" style="width:24px;height:24px;"></i>
+                        </div>
+                        <div class="product-card-meta">
+                            <h3>PexisConnect</h3>
+                            <p>Danh cho dai ly & khach hang</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:16px;">
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,144,164,0.06);border-radius:12px;">
+                            <i data-lucide="shopping-cart" style="width:20px;height:20px;color:#4A90A4;"></i>
+                            <div>
+                                <div style="font-size:14px;font-weight:600;">Dat hang nhanh chong</div>
+                                <div style="font-size:12px;color:var(--text-muted);">Chon san pham, nhap thong so, gui file — tat ca chi trong vai buoc</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,144,164,0.06);border-radius:12px;">
+                            <i data-lucide="upload" style="width:20px;height:20px;color:#4A90A4;"></i>
+                            <div>
+                                <div style="font-size:14px;font-weight:600;">Gui file de dang</div>
+                                <div style="font-size:12px;color:var(--text-muted);">Upload file thiet ke truc tiep, ho tro nhieu dinh dang anh va PDF</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,144,164,0.06);border-radius:12px;">
+                            <i data-lucide="eye" style="width:20px;height:20px;color:#4A90A4;"></i>
+                            <div>
+                                <div style="font-size:14px;font-weight:600;">Theo doi real-time</div>
+                                <div style="font-size:12px;color:var(--text-muted);">Biet chinh xac don hang dang o cong doan nao, khi nao xong</div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,144,164,0.06);border-radius:12px;">
+                            <i data-lucide="star" style="width:20px;height:20px;color:#4A90A4;"></i>
+                            <div>
+                                <div style="font-size:14px;font-weight:600;">Tich diem tu dong</div>
+                                <div style="font-size:12px;color:var(--text-muted);">Moi don hang deu duoc tich diem, doi uu dai tu nha cung cap</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== How it Works ===== -->
+    <section class="section alt-bg" id="how-it-works" style="background:var(--bg-card-alt);">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="section-label">
+                    <i data-lucide="route" style="width:14px;height:14px;"></i>
+                    Cach hoat dong
+                </div>
+                <h2 class="section-title">Bat dau chi trong 4 buoc</h2>
+                <p class="section-subtitle">
+                    Thiet lap he thong nhanh chong — tu cai dat den ket noi voi dai ly chi mat vai phut.
+                </p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card fade-up">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i data-lucide="server" style="width:24px;height:24px;"></i>
+                    </div>
+                    <h3>Cai dat PexisCore</h3>
+                    <p>Cai dat PexisCore tren may tinh cua nha cung cap. Server se tu dong khoi dong va tao database local.</p>
+                    <div class="step-arrow">
+                        <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+                    </div>
+                </div>
+                <div class="step-card fade-up fade-up-delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i data-lucide="user-plus" style="width:24px;height:24px;"></i>
+                    </div>
+                    <h3>Dang ky tren PexisAdmin</h3>
+                    <p>Dang ky tai khoan nha cung cap tren PexisAdmin. He thong se tao tunnel HTTPS tu dong.</p>
+                    <div class="step-arrow">
+                        <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+                    </div>
+                </div>
+                <div class="step-card fade-up fade-up-delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i data-lucide="share-2" style="width:24px;height:24px;"></i>
+                    </div>
+                    <h3>Chia se ma NCC</h3>
+                    <p>Nha cung cap nhan duoc ma rieng. Chia se ma nay cho dai ly de ho ket noi vao he thong.</p>
+                    <div class="step-arrow">
+                        <i data-lucide="chevron-right" style="width:20px;height:20px;"></i>
+                    </div>
+                </div>
+                <div class="step-card fade-up fade-up-delay-3">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i data-lucide="link" style="width:24px;height:24px;"></i>
+                    </div>
+                    <h3>Dai ly ket noi</h3>
+                    <p>Dai ly cai PexisConnect, nhap ma NCC va bat dau dat hang, chat, gui file ngay lap tuc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Features ===== -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="section-label">
+                    <i data-lucide="sparkles" style="width:14px;height:14px;"></i>
+                    Tinh nang noi bat
+                </div>
+                <h2 class="section-title">Moi thu ban can, trong mot nen tang</h2>
+                <p class="section-subtitle">
+                    Pexis duoc xay dung voi day du tinh nang de van hanh lab in an hieu qua va ket noi mang luoi dai ly.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-up">
+                    <div class="feature-card-icon">
+                        <i data-lucide="message-circle" style="width:22px;height:22px;"></i>
+                    </div>
+                    <h3>Chat real-time</h3>
+                    <p>Trao doi truc tiep giua nha cung cap va dai ly. Gui tin nhan, hinh anh, file — tuc thi va bao mat.</p>
+                </div>
+                <div class="feature-card fade-up fade-up-delay-1">
+                    <div class="feature-card-icon">
+                        <i data-lucide="clipboard-list" style="width:22px;height:22px;"></i>
+                    </div>
+                    <h3>Quan ly don hang</h3>
+                    <p>Tao, tiep nhan, xu ly don hang tu dai ly. Theo doi trang thai tu luc dat den khi giao hang.</p>
+                </div>
+                <div class="feature-card fade-up fade-up-delay-2">
+                    <div class="feature-card-icon">
+                        <i data-lucide="cog" style="width:22px;height:22px;"></i>
+                    </div>
+                    <h3>San xuat & theo doi</h3>
+                    <p>Phan cong san xuat theo cong doan, cap nhat tien do real-time. Biet chinh xac don hang dang o dau.</p>
+                </div>
+                <div class="feature-card fade-up fade-up-delay-3">
+                    <div class="feature-card-icon">
+                        <i data-lucide="users" style="width:22px;height:22px;"></i>
+                    </div>
+                    <h3>Nhan su & cham cong</h3>
+                    <p>Quan ly nhan vien, ca lam viec, cham cong. Tinh luong tu dong dua tren du lieu cham cong.</p>
+                </div>
+                <div class="feature-card fade-up">
+                    <div class="feature-card-icon">
+                        <i data-lucide="wallet" style="width:22px;height:22px;"></i>
+                    </div>
+                    <h3>Thu chi & cong no</h3>
+                    <p>Ghi nhan moi giao dich thu chi, theo doi cong no tung dai ly. Bao cao tai chinh ro rang.</p>
+                </div>
+                <div class="feature-card fade-up fade-up-delay-1">
+                    <div class="feature-card-icon">
+                        <i data-lucide="shield" style="width:22px;height:22px;"></i>
+                    </div>
+                    <h3>Phan quyen tai khoan</h3>
+                    <p>Tao nhieu tai khoan voi quyen han khac nhau. Moi nhan vien chi thay nhung gi can thiet.</p>
+                </div>
+                <div class="feature-card fade-up fade-up-delay-2">
+                    <div class="feature-card-icon">
+                        <i data-lucide="lock" style="width:22px;height:22px;"></i>
+                    </div>
+                    <h3>Ket noi HTTPS bao mat</h3>
+                    <p>Cloudflare Tunnel tao ket noi ma hoa HTTPS tu dong. Khong can IP tinh, khong can mo port router.</p>
+                </div>
+                <div class="feature-card fade-up fade-up-delay-3">
+                    <div class="feature-card-icon">
+                        <i data-lucide="database" style="width:22px;height:22px;"></i>
+                    </div>
+                    <h3>Du lieu local</h3>
+                    <p>Database SQLite chay tren may nha cung cap. Du lieu cua ban thuoc ve ban — khong phu thuoc cloud.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Download ===== -->
+    <section class="section download-section" id="download">
+        <div class="container">
+            <div class="section-header fade-up">
+                <div class="section-label">
+                    <i data-lucide="download" style="width:14px;height:14px;"></i>
+                    Tai ve
+                </div>
+                <h2 class="section-title">Tai ung dung Pexis</h2>
+                <p class="section-subtitle">
+                    Chon ung dung phu hop voi vai tro cua ban va bat dau su dung ngay hom nay.
+                </p>
+            </div>
+            <div class="download-cards">
+                <!-- PexisOne -->
+                <div class="dl-card fade-up">
+                    <div class="dl-card-header">
+                        <div class="dl-card-icon one-bg">
+                            <i data-lucide="building-2" style="width:24px;height:24px;"></i>
+                        </div>
+                        <div>
+                            <h3>PexisOne</h3>
+                            <p style="font-size:13px;color:var(--text-muted);">Danh cho nha cung cap</p>
+                        </div>
+                    </div>
+                    <div class="dl-platform">
+                        <div class="dl-platform-info">
+                            <div class="dl-platform-icon">
+                                <i data-lucide="monitor" style="width:18px;height:18px;"></i>
+                            </div>
+                            <div>
+                                <div class="dl-platform-name">Windows</div>
+                                <div class="dl-platform-detail">Windows 10 tro len</div>
+                            </div>
+                        </div>
+                        <a href="#download-pexisone-win" class="btn btn-primary btn-sm">Tai ve</a>
+                    </div>
+                    <div class="dl-platform">
+                        <div class="dl-platform-info">
+                            <div class="dl-platform-icon">
+                                <i data-lucide="laptop" style="width:18px;height:18px;"></i>
+                            </div>
+                            <div>
+                                <div class="dl-platform-name">macOS</div>
+                                <div class="dl-platform-detail">macOS 12 tro len</div>
+                            </div>
+                        </div>
+                        <a href="#download-pexisone-mac" class="btn btn-primary btn-sm">Tai ve</a>
+                    </div>
+                    <div class="dl-platform">
+                        <div class="dl-platform-info">
+                            <div class="dl-platform-icon">
+                                <i data-lucide="smartphone" style="width:18px;height:18px;"></i>
+                            </div>
+                            <div>
+                                <div class="dl-platform-name">iOS</div>
+                                <div class="dl-platform-detail">iPhone & iPad</div>
+                            </div>
+                        </div>
+                        <span class="badge badge-pending">Dang cho phe duyet</span>
+                    </div>
+                    <div class="dl-platform">
+                        <div class="dl-platform-info">
+                            <div class="dl-platform-icon">
+                                <i data-lucide="smartphone" style="width:18px;height:18px;"></i>
+                            </div>
+                            <div>
+                                <div class="dl-platform-name">Android</div>
+                                <div class="dl-platform-detail">Android 8 tro len</div>
+                            </div>
+                        </div>
+                        <span class="badge badge-pending">Dang cho phe duyet</span>
+                    </div>
+                </div>
+
+                <!-- PexisConnect -->
+                <div class="dl-card fade-up fade-up-delay-1">
+                    <div class="dl-card-header">
+                        <div class="dl-card-icon connect-bg">
+                            <i data-lucide="store" style="width:24px;height:24px;"></i>
+                        </div>
+                        <div>
+                            <h3>PexisConnect</h3>
+                            <p style="font-size:13px;color:var(--text-muted);">Danh cho dai ly & khach hang</p>
+                        </div>
+                    </div>
+                    <div class="dl-platform">
+                        <div class="dl-platform-info">
+                            <div class="dl-platform-icon">
+                                <i data-lucide="monitor" style="width:18px;height:18px;"></i>
+                            </div>
+                            <div>
+                                <div class="dl-platform-name">Windows</div>
+                                <div class="dl-platform-detail">Windows 10 tro len</div>
+                            </div>
+                        </div>
+                        <a href="#download-pexisconnect-win" class="btn btn-primary btn-sm">Tai ve</a>
+                    </div>
+                    <div class="dl-platform">
+                        <div class="dl-platform-info">
+                            <div class="dl-platform-icon">
+                                <i data-lucide="laptop" style="width:18px;height:18px;"></i>
+                            </div>
+                            <div>
+                                <div class="dl-platform-name">macOS</div>
+                                <div class="dl-platform-detail">macOS 12 tro len</div>
+                            </div>
+                        </div>
+                        <a href="#download-pexisconnect-mac" class="btn btn-primary btn-sm">Tai ve</a>
+                    </div>
+                    <div class="dl-platform">
+                        <div class="dl-platform-info">
+                            <div class="dl-platform-icon">
+                                <i data-lucide="smartphone" style="width:18px;height:18px;"></i>
+                            </div>
+                            <div>
+                                <div class="dl-platform-name">iOS</div>
+                                <div class="dl-platform-detail">iPhone & iPad</div>
+                            </div>
+                        </div>
+                        <span class="badge badge-pending">Dang cho phe duyet</span>
+                    </div>
+                    <div class="dl-platform">
+                        <div class="dl-platform-info">
+                            <div class="dl-platform-icon">
+                                <i data-lucide="smartphone" style="width:18px;height:18px;"></i>
+                            </div>
+                            <div>
+                                <div class="dl-platform-name">Android</div>
+                                <div class="dl-platform-detail">Android 8 tro len</div>
+                            </div>
+                        </div>
+                        <span class="badge badge-pending">Dang cho phe duyet</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PexisCore & PexisAdmin note -->
+            <div class="fade-up" style="margin-top:40px;text-align:center;">
+                <div style="display:inline-flex;align-items:center;gap:12px;padding:16px 28px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);">
+                    <i data-lucide="server" style="width:20px;height:20px;color:var(--teal);"></i>
+                    <span style="font-size:14px;color:var(--text-secondary);">
+                        <strong style="color:var(--text-primary);">PexisCore</strong> (Server) va <strong style="color:var(--text-primary);">PexisAdmin</strong> (Quan tri) duoc cung cap khi dang ky lam nha cung cap.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>
+                        <img src="icon.png" alt="Pexis">
+                        Pexis
+                    </h3>
+                    <p>Nen tang ket noi nha cung cap va dai ly trong nganh in an. Du lieu bao mat, ket noi nhanh chong, van hanh hieu qua.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>San pham</h4>
+                    <ul>
+                        <li><a href="#supplier">PexisOne</a></li>
+                        <li><a href="#dealer">PexisConnect</a></li>
+                        <li><a href="#how-it-works">PexisCore</a></li>
+                        <li><a href="#how-it-works">PexisAdmin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Tai nguyen</h4>
+                    <ul>
+                        <li><a href="#about">Gioi thieu</a></li>
+                        <li><a href="#how-it-works">Cach hoat dong</a></li>
+                        <li><a href="#features">Tinh nang</a></li>
+                        <li><a href="#download">Tai ve</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Lien he</h4>
+                    <ul>
+                        <li><a href="mailto:contact@pexis.vn">contact@pexis.vn</a></li>
+                        <li><a href="#">Ho tro ky thuat</a></li>
+                        <li><a href="#">Dieu khoan su dung</a></li>
+                        <li><a href="#">Chinh sach bao mat</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 Pexis. Moi quyen duoc bao luu.</span>
+                <a href="#">pexis.vn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== Scripts ===== -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mobile menu
+        function toggleMobile() {
+            document.getElementById('mobileMenu').classList.toggle('open');
+        }
+        function closeMobile() {
+            document.getElementById('mobileMenu').classList.remove('open');
+        }
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY + 100;
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+                const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+                if (link) {
+                    if (scrollY >= top && scrollY < top + height) {
+                        link.style.color = 'var(--teal)';
+                    } else {
+                        link.style.color = '';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
