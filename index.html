@@ -7,6 +7,16 @@
     <meta name="description" content="Pexis - Nền tảng B2B kết nối nhà cung cấp (lab in ấn) với đại lý, studio, tiệm ảnh. Quản lý đơn hàng, sản xuất, chat real-time.">
     <meta name="keywords" content="pexis, in ấn, lab, đại lý, studio, quản lý đơn hàng, B2B">
     <link rel="icon" type="image/png" href="icon.png">
+    <link rel="canonical" href="https://pexis.vn/">
+    <meta property="og:title" content="Pexis - Nền tảng kết nối nhà cung cấp và đại lý">
+    <meta property="og:description" content="Quản lý đơn hàng, hóa đơn, sản xuất, nhân sự. Dữ liệu local, kết nối HTTPS bảo mật.">
+    <meta property="og:image" content="https://pexis.vn/icon.png">
+    <meta property="og:url" content="https://pexis.vn">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         /* ===== CSS Reset & Base ===== */
@@ -23,6 +33,9 @@
             --gray: #6B7280;
             --gray-light: #9CA3AF;
             --white: #FFFFFF;
+            --green: #10B981;
+            --amber: #D97706;
+            --connect-blue: #4A90A4;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
             --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
             --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
@@ -56,6 +69,9 @@
                 --teal: #5AADAD;
                 --teal-light: #6BBFBF;
                 --teal-dark: #4A9494;
+                --green: #34D399;
+                --amber: #FBBF24;
+                --connect-blue: #6BB8CC;
                 --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
                 --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
                 --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
@@ -273,7 +289,7 @@
 
         .badge-pending {
             background: rgba(245, 158, 11, 0.12);
-            color: #D97706;
+            color: var(--amber);
         }
 
         .badge-new {
@@ -319,7 +335,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #10B981;
+            background: var(--green);
             animation: pulse-dot 2s infinite;
         }
 
@@ -619,7 +635,7 @@
         }
 
         .product-card-icon.one-bg { background: linear-gradient(135deg, var(--teal), var(--teal-light)); }
-        .product-card-icon.connect-bg { background: linear-gradient(135deg, #4A90A4, #5CB8B2); }
+        .product-card-icon.connect-bg { background: linear-gradient(135deg, var(--connect-blue), #5CB8B2); }
 
         .product-card-meta h3 {
             font-size: 20px;
@@ -643,7 +659,7 @@
             color: var(--text-secondary);
         }
 
-        .mobile-note i { color: #D97706; flex-shrink: 0; }
+        .mobile-note i { color: var(--amber); flex-shrink: 0; }
 
         /* ===== How it Works ===== */
         .steps-grid {
@@ -849,8 +865,12 @@
 
         /* ===== Footer ===== */
         .footer {
+            --footer-text: rgba(255,255,255,0.7);
+            --footer-text-dim: rgba(255,255,255,0.6);
+            --footer-text-muted: rgba(255,255,255,0.5);
+            --footer-border: rgba(255,255,255,0.08);
             background: var(--dark);
-            color: rgba(255,255,255,0.7);
+            color: var(--footer-text);
             padding: 64px 0 32px;
         }
 
@@ -901,7 +921,7 @@
         .footer-col li { margin-bottom: 10px; }
 
         .footer-col a {
-            color: rgba(255,255,255,0.6);
+            color: var(--footer-text-dim);
             text-decoration: none;
             font-size: 14px;
             transition: color var(--transition);
@@ -911,7 +931,7 @@
 
         .footer-bottom {
             padding-top: 32px;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid var(--footer-border);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -919,7 +939,7 @@
         }
 
         .footer-bottom a {
-            color: rgba(255,255,255,0.5);
+            color: var(--footer-text-muted);
             text-decoration: none;
         }
 
@@ -990,8 +1010,8 @@
     <!-- ===== Navigation ===== -->
     <nav class="nav">
         <div class="container nav-inner">
-            <a href="#" class="nav-logo">
-                <img src="icon.png" alt="Pexis">
+            <a href="/" class="nav-logo">
+                <img src="icon.png" alt="Pexis" loading="lazy">
                 Pexis
             </a>
             <ul class="nav-links">
@@ -1116,7 +1136,7 @@
                         </div>
                         <div class="diagram-node diagram-node-platform">
                             <div class="diagram-icon-box">
-                                <img src="icon.png" alt="Pexis" style="width:36px;height:36px;border-radius:8px;">
+                                <img src="icon.png" alt="Pexis" loading="lazy" style="width:36px;height:36px;border-radius:8px;">
                             </div>
                             <div class="diagram-node-label">Pexis</div>
                             <div class="diagram-node-sub">Nền tảng kết nối</div>
@@ -1332,28 +1352,28 @@
                     </div>
                     <div style="display:flex;flex-direction:column;gap:16px;">
                         <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,144,164,0.06);border-radius:12px;">
-                            <i data-lucide="shopping-cart" style="width:20px;height:20px;color:#4A90A4;"></i>
+                            <i data-lucide="shopping-cart" style="width:20px;height:20px;color:var(--connect-blue);"></i>
                             <div>
                                 <div style="font-size:14px;font-weight:600;">Đặt hàng nhanh chóng</div>
                                 <div style="font-size:12px;color:var(--text-muted);">Chọn sản phẩm, nhập thông số, gửi file — tất cả chỉ trong vài bước</div>
                             </div>
                         </div>
                         <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,144,164,0.06);border-radius:12px;">
-                            <i data-lucide="upload" style="width:20px;height:20px;color:#4A90A4;"></i>
+                            <i data-lucide="upload" style="width:20px;height:20px;color:var(--connect-blue);"></i>
                             <div>
                                 <div style="font-size:14px;font-weight:600;">Gửi file dễ dàng</div>
                                 <div style="font-size:12px;color:var(--text-muted);">Upload file thiết kế trực tiếp, hỗ trợ nhiều định dạng ảnh và PDF</div>
                             </div>
                         </div>
                         <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,144,164,0.06);border-radius:12px;">
-                            <i data-lucide="eye" style="width:20px;height:20px;color:#4A90A4;"></i>
+                            <i data-lucide="eye" style="width:20px;height:20px;color:var(--connect-blue);"></i>
                             <div>
                                 <div style="font-size:14px;font-weight:600;">Theo dõi real-time</div>
                                 <div style="font-size:12px;color:var(--text-muted);">Biết chính xác đơn hàng đang ở công đoạn nào, khi nào xong</div>
                             </div>
                         </div>
                         <div style="display:flex;align-items:center;gap:12px;padding:16px;background:rgba(74,144,164,0.06);border-radius:12px;">
-                            <i data-lucide="star" style="width:20px;height:20px;color:#4A90A4;"></i>
+                            <i data-lucide="star" style="width:20px;height:20px;color:var(--connect-blue);"></i>
                             <div>
                                 <div style="font-size:14px;font-weight:600;">Tích điểm tự động</div>
                                 <div style="font-size:12px;color:var(--text-muted);">Mỗi đơn hàng đều được tích điểm, đổi ưu đãi từ nhà cung cấp</div>
@@ -1653,7 +1673,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <h3>
-                        <img src="icon.png" alt="Pexis">
+                        <img src="icon.png" alt="Pexis" loading="lazy">
                         Pexis
                     </h3>
                     <p>Nền tảng kết nối nhà cung cấp và đại lý trong ngành in ấn. Dữ liệu bảo mật, kết nối nhanh chóng, vận hành hiệu quả.</p>
@@ -1680,15 +1700,15 @@
                     <h4>Liên hệ</h4>
                     <ul>
                         <li><a href="mailto:contact@pexis.vn">contact@pexis.vn</a></li>
-                        <li><a href="#">Hỗ trợ kỹ thuật</a></li>
-                        <li><a href="#">Điều khoản sử dụng</a></li>
-                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="mailto:support@pexis.vn">Hỗ trợ kỹ thuật</a></li>
+                        <li><a href="https://noland81.github.io/printolab-legal/terms.html">Điều khoản sử dụng</a></li>
+                        <li><a href="https://noland81.github.io/printolab-legal/privacy.html">Chính sách bảo mật</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <span>&copy; 2024 Pexis. Mọi quyền được bảo lưu.</span>
-                <a href="#">pexis.vn</a>
+                <a href="https://pexis.vn">pexis.vn</a>
             </div>
         </div>
     </footer>
