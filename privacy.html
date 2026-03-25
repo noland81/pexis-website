@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pexis — Chính sách bảo mật</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        :root { --bg: #F5F0EB; --card: #fff; --text: #2C3338; --text-sec: #6B7280; --accent: #2D6A6A; --border: #E8E4E0; }
+        @media (prefers-color-scheme: dark) { :root { --bg: #1A1A1C; --card: #242426; --text: #E8E4E0; --text-sec: #9CA3AF; --accent: #3D8A8A; --border: #333336; } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+        .container { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+        .logo { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; text-decoration: none; color: var(--text); }
+        .logo img { width: 40px; height: 40px; border-radius: 10px; }
+        .logo span { font-size: 20px; font-weight: 700; }
+        .card { background: var(--card); border-radius: 16px; padding: 32px; border: 1px solid var(--border); }
+        h1 { font-size: 24px; margin-bottom: 8px; color: var(--accent); }
+        .subtitle { color: var(--text-sec); font-size: 14px; margin-bottom: 24px; }
+        h2 { font-size: 17px; font-weight: 600; margin: 24px 0 8px; color: var(--text); }
+        p, li { font-size: 15px; color: var(--text); margin-bottom: 8px; }
+        ul { padding-left: 20px; }
+        .footer { text-align: center; margin-top: 32px; color: var(--text-sec); font-size: 13px; }
+        a { color: var(--accent); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="https://pexis.vn" class="logo"><img src="icon.png" alt="Pexis"><span>Pexis</span></a>
+    <div class="card">
+        <h1>Chính sách bảo mật</h1>
+        <p class="subtitle">Cập nhật lần cuối: 25/03/2026</p>
+
+        <h2>1. Giới thiệu</h2>
+        <p>Pexis cam kết bảo vệ quyền riêng tư của bạn. Chính sách này áp dụng cho tất cả sản phẩm: PexisOne, PexisConnect, PexisOps và PexisCore.</p>
+
+        <h2>2. Dữ liệu được thu thập</h2>
+        <ul>
+            <li><strong>Thông tin tài khoản:</strong> Tên đăng nhập, tên hiển thị (do quản trị viên tạo)</li>
+            <li><strong>Thông tin thiết bị:</strong> Device ID để xác thực kết nối và quản lý thiết bị</li>
+            <li><strong>Dữ liệu hoạt động:</strong> Đơn hàng, hóa đơn, chấm công, tin nhắn — phục vụ vận hành kinh doanh</li>
+        </ul>
+
+        <h2>3. Lưu trữ dữ liệu</h2>
+        <p>Dữ liệu của bạn được lưu trữ <strong>trên server nội bộ của nhà cung cấp</strong>, không phải trên cloud. Chỉ nhà cung cấp có quyền truy cập dữ liệu của cửa hàng mình.</p>
+
+        <h2>4. Chia sẻ dữ liệu</h2>
+        <p>Chúng tôi <strong>không chia sẻ</strong> dữ liệu cá nhân với bên thứ ba. Dữ liệu chỉ được trao đổi giữa nhà cung cấp và đại lý trong phạm vi đơn hàng.</p>
+
+        <h2>5. Bảo mật</h2>
+        <ul>
+            <li>Kết nối mã hóa HTTPS qua Cloudflare Tunnel</li>
+            <li>Xác thực WebSocket với token phiên</li>
+            <li>Mật khẩu được hash trước khi lưu</li>
+        </ul>
+
+        <h2>6. Quyền của bạn</h2>
+        <ul>
+            <li><strong>Xem dữ liệu:</strong> Bạn có thể xem thông tin cá nhân trong Cài đặt</li>
+            <li><strong>Xóa tài khoản:</strong> Vào Cài đặt → Xóa tài khoản. Dữ liệu cá nhân sẽ bị xóa</li>
+            <li><strong>Liên hệ:</strong> Gửi yêu cầu về <a href="mailto:support@pexis.vn">support@pexis.vn</a></li>
+        </ul>
+
+        <h2>7. Firebase</h2>
+        <p>App sử dụng Firebase cho thông báo đẩy (FCM) và đăng ký lab (Firestore). Google có thể thu thập dữ liệu kỹ thuật theo chính sách riêng của Google.</p>
+
+        <h2>8. Thay đổi chính sách</h2>
+        <p>Chúng tôi có thể cập nhật chính sách này. Thay đổi sẽ được thông báo qua ứng dụng.</p>
+
+        <h2>9. Liên hệ</h2>
+        <p>Email: <a href="mailto:support@pexis.vn">support@pexis.vn</a><br>Website: <a href="https://pexis.vn">pexis.vn</a></p>
+    </div>
+    <div class="footer">© 2026 Pexis. All rights reserved.</div>
+</div>
+</body>
+</html>
