@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pexis — Nền tảng quản lý toàn diện cho ngành in ấn</title>
-    <meta name="description" content="Pexis giúp lab/tiệm in quản lý toàn bộ hệ thống từ đơn hàng, sản xuất đến giao hàng. Tiết kiệm nhân sự, chat real-time, quản lý sản xuất chi tiết.">
-    <meta name="keywords" content="pexis, in ấn, lab, đại lý, studio, quản lý đơn hàng, quản lý sản xuất, B2B">
+    <title>Pexis — Hệ điều hành cho doanh nghiệp phân phối</title>
+    <meta name="description" content="Pexis là nền tảng quản lý vận hành và phân phối dành cho doanh nghiệp. Kết nối nhà cung cấp, đại lý và khách hàng trong một hệ thống thống nhất.">
+    <meta name="keywords" content="pexis, quản lý phân phối, vận hành doanh nghiệp, đại lý, B2B, quản lý đơn hàng, ERP">
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="canonical" href="https://pexis.vn/">
-    <meta property="og:title" content="Pexis — Nền tảng quản lý toàn diện cho ngành in ấn">
-    <meta property="og:description" content="Quản lý toàn bộ hệ thống từ đơn hàng đến giao hàng. Tiết kiệm nhân sự, mọi thứ tự động, rõ ràng.">
+    <meta property="og:title" content="Pexis — Hệ điều hành cho doanh nghiệp phân phối">
+    <meta property="og:description" content="Số hóa toàn bộ quy trình kinh doanh. Kết nối nhà cung cấp, đại lý và khách hàng trên một nền tảng duy nhất.">
     <meta property="og:image" content="https://pexis.vn/icon.png">
     <meta property="og:url" content="https://pexis.vn">
     <meta property="og:type" content="website">
@@ -35,10 +35,12 @@
             --gray-light: #9CA3AF;
             --white: #FFFFFF;
             --green: #10B981;
-            --amber: #D97706;
+            --amber: #F59E0B;
             --red: #EF4444;
-            --connect-blue: #4A90A4;
-            --ops-orange: #E8723A;
+            --core-blue: #4A90D9;
+            --one-purple: #8B5CF6;
+            --ops-orange: #F59E0B;
+            --connect-green: #10B981;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
             --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
             --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
@@ -78,8 +80,10 @@
                 --green: #34D399;
                 --amber: #FBBF24;
                 --red: #F87171;
-                --connect-blue: #6BB8CC;
-                --ops-orange: #F59E6B;
+                --core-blue: #6BA8E8;
+                --one-purple: #A78BFA;
+                --ops-orange: #FBBF24;
+                --connect-green: #34D399;
                 --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
                 --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
                 --shadow-lg: 0 8px 32px rgba(0,0,0,0.4);
@@ -298,7 +302,7 @@
         .hero-subtitle {
             font-size: clamp(16px, 2vw, 19px);
             color: var(--text-secondary);
-            max-width: 580px;
+            max-width: 620px;
             margin: 0 auto 40px;
             line-height: 1.7;
         }
@@ -378,187 +382,79 @@
             margin-top: 4px;
         }
 
-        /* ===== Problems & Solutions ===== */
-        .problems-section {
+        /* ===== Vision ===== */
+        .vision-section {
             background: var(--bg-surface);
         }
 
-        .ps-grid {
+        .vision-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .ps-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-xl);
-            padding: 40px;
-            border: 1px solid var(--border);
-        }
-
-        .ps-card-header {
-            display: flex;
+            gap: 60px;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 28px;
         }
 
-        .ps-card-icon {
-            width: 44px;
-            height: 44px;
+        .vision-text h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .vision-text p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .vision-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .vision-highlight {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .vision-highlight:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .vision-highlight-icon {
+            width: 48px;
+            height: 48px;
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .ps-card-icon.problem {
-            background: rgba(239, 68, 68, 0.1);
-            color: var(--red);
-        }
-
-        .ps-card-icon.solution {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--green);
-        }
-
-        .ps-card-title {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .ps-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .ps-list li {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .ps-list li i {
             flex-shrink: 0;
-            margin-top: 3px;
-        }
-
-        .ps-list.problem li i {
-            color: var(--red);
-        }
-
-        .ps-list.solution li i {
-            color: var(--green);
-        }
-
-        /* ===== Workflow ===== */
-        .workflow-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            position: relative;
-        }
-
-        .workflow-steps::before {
-            content: '';
-            position: absolute;
-            top: 48px;
-            left: 12.5%;
-            right: 12.5%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--teal), var(--connect-blue), var(--ops-orange), var(--green));
-            opacity: 0.3;
-        }
-
-        .workflow-step {
-            text-align: center;
-            position: relative;
-        }
-
-        .workflow-step-num {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-weight: 700;
-            font-size: 18px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .workflow-step:nth-child(1) .workflow-step-num {
             background: var(--teal-bg);
             color: var(--teal);
-            border: 2px solid var(--teal);
         }
 
-        .workflow-step:nth-child(2) .workflow-step-num {
-            background: rgba(74, 144, 164, 0.1);
-            color: var(--connect-blue);
-            border: 2px solid var(--connect-blue);
-        }
-
-        .workflow-step:nth-child(3) .workflow-step-num {
-            background: rgba(232, 114, 58, 0.1);
-            color: var(--ops-orange);
-            border: 2px solid var(--ops-orange);
-        }
-
-        .workflow-step:nth-child(4) .workflow-step-num {
-            background: rgba(16, 185, 129, 0.1);
-            color: var(--green);
-            border: 2px solid var(--green);
-        }
-
-        .workflow-step-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: var(--radius-lg);
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 16px;
-            color: var(--teal);
-        }
-
-        .workflow-step-title {
+        .vision-highlight h4 {
             font-size: 16px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
-        .workflow-step-desc {
+        .vision-highlight p {
             font-size: 14px;
             color: var(--text-secondary);
             line-height: 1.6;
+            margin-bottom: 0;
         }
-
-        .workflow-step-app {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 100px;
-            margin-top: 12px;
-        }
-
-        .workflow-step:nth-child(1) .workflow-step-app { background: rgba(74, 144, 164, 0.1); color: var(--connect-blue); }
-        .workflow-step:nth-child(2) .workflow-step-app { background: var(--teal-bg); color: var(--teal); }
-        .workflow-step:nth-child(3) .workflow-step-app { background: rgba(232, 114, 58, 0.1); color: var(--ops-orange); }
-        .workflow-step:nth-child(4) .workflow-step-app { background: var(--teal-bg); color: var(--teal); }
 
         /* ===== Ecosystem ===== */
         .ecosystem-section {
@@ -567,7 +463,7 @@
 
         .eco-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
         }
 
@@ -595,9 +491,25 @@
             height: 3px;
         }
 
-        .eco-card.one::before { background: var(--teal); }
-        .eco-card.connect::before { background: var(--connect-blue); }
+        .eco-card.core::before { background: var(--core-blue); }
+        .eco-card.one::before { background: var(--one-purple); }
         .eco-card.ops::before { background: var(--ops-orange); }
+        .eco-card.connect::before { background: var(--connect-green); }
+
+        .eco-card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .eco-card.core .eco-card-icon { background: rgba(74, 144, 217, 0.1); color: var(--core-blue); }
+        .eco-card.one .eco-card-icon { background: rgba(139, 92, 246, 0.1); color: var(--one-purple); }
+        .eco-card.ops .eco-card-icon { background: rgba(245, 158, 11, 0.1); color: var(--ops-orange); }
+        .eco-card.connect .eco-card-icon { background: rgba(16, 185, 129, 0.1); color: var(--connect-green); }
 
         .eco-card-badge {
             display: inline-flex;
@@ -610,9 +522,10 @@
             margin-bottom: 16px;
         }
 
-        .eco-card.one .eco-card-badge { background: var(--teal-bg); color: var(--teal); }
-        .eco-card.connect .eco-card-badge { background: rgba(74, 144, 164, 0.1); color: var(--connect-blue); }
-        .eco-card.ops .eco-card-badge { background: rgba(232, 114, 58, 0.1); color: var(--ops-orange); }
+        .eco-card.core .eco-card-badge { background: rgba(74, 144, 217, 0.1); color: var(--core-blue); }
+        .eco-card.one .eco-card-badge { background: rgba(139, 92, 246, 0.1); color: var(--one-purple); }
+        .eco-card.ops .eco-card-badge { background: rgba(245, 158, 11, 0.1); color: var(--ops-orange); }
+        .eco-card.connect .eco-card-badge { background: rgba(16, 185, 129, 0.1); color: var(--connect-green); }
 
         .eco-card-title {
             font-size: 22px;
@@ -631,7 +544,6 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-bottom: 24px;
         }
 
         .eco-card-features li {
@@ -642,36 +554,238 @@
             color: var(--text-secondary);
         }
 
-        .eco-card-features li i {
-            color: var(--teal);
-            flex-shrink: 0;
+        .eco-card.core .eco-card-features li i { color: var(--core-blue); }
+        .eco-card.one .eco-card-features li i { color: var(--one-purple); }
+        .eco-card.ops .eco-card-features li i { color: var(--ops-orange); }
+        .eco-card.connect .eco-card-features li i { color: var(--connect-green); }
+
+        /* ===== Data Flow ===== */
+        .flow-section {
+            position: relative;
+            overflow: hidden;
         }
 
-        .eco-card-platforms {
+        .flow-diagram {
             display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .eco-platform {
+        .flow-core {
+            background: var(--bg-card);
+            border: 2px solid var(--core-blue);
+            border-radius: var(--radius-2xl);
+            padding: 36px 48px;
+            text-align: center;
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+
+        .flow-core-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-lg);
+            background: rgba(74, 144, 217, 0.1);
+            color: var(--core-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .flow-core h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--core-blue);
+            margin-bottom: 8px;
+        }
+
+        .flow-core p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            max-width: 400px;
+        }
+
+        .flow-arrows {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            position: relative;
+        }
+
+        .flow-arrows::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--one-purple), var(--core-blue), var(--connect-green));
+            opacity: 0.3;
+        }
+
+        .flow-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding-top: 20px;
+        }
+
+        .flow-arrow-icon {
+            color: var(--text-muted);
+        }
+
+        .flow-apps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            width: 100%;
+        }
+
+        .flow-app {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .flow-app:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .flow-app-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+        }
+
+        .flow-app.one .flow-app-icon { background: rgba(139, 92, 246, 0.1); color: var(--one-purple); }
+        .flow-app.ops .flow-app-icon { background: rgba(245, 158, 11, 0.1); color: var(--ops-orange); }
+        .flow-app.connect .flow-app-icon { background: rgba(16, 185, 129, 0.1); color: var(--connect-green); }
+
+        .flow-app h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .flow-app.one h4 { color: var(--one-purple); }
+        .flow-app.ops h4 { color: var(--ops-orange); }
+        .flow-app.connect h4 { color: var(--connect-green); }
+
+        .flow-app p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .flow-data-labels {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .flow-data-label {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
             font-size: 12px;
+            font-weight: 500;
             color: var(--text-muted);
             background: var(--bg-card-alt);
-            padding: 4px 10px;
+            padding: 6px 14px;
             border-radius: 100px;
         }
 
-        /* ===== Features Grid ===== */
-        .features-grid {
+        .flow-data-label i {
+            color: var(--teal);
+        }
+
+        /* ===== Value Proposition ===== */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .value-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .value-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            background: var(--teal-bg);
+            color: var(--teal);
+        }
+
+        .value-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .value-card-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .value-card-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .value-card-list li i {
+            color: var(--teal);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* ===== Security ===== */
+        .security-section {
+            background: var(--bg-surface);
+        }
+
+        .security-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 20px;
         }
 
-        .feature-card {
+        .security-card {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
             padding: 28px;
@@ -679,12 +793,12 @@
             transition: var(--transition);
         }
 
-        .feature-card:hover {
+        .security-card:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
 
-        .feature-icon {
+        .security-icon {
             width: 48px;
             height: 48px;
             border-radius: var(--radius-md);
@@ -696,13 +810,58 @@
             margin-bottom: 16px;
         }
 
-        .feature-card h3 {
+        .security-card h3 {
             font-size: 16px;
             font-weight: 700;
             margin-bottom: 8px;
         }
 
-        .feature-card p {
+        .security-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ===== Roadmap ===== */
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .roadmap-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 32px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .roadmap-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            background: var(--teal-bg);
+            color: var(--teal);
+        }
+
+        .roadmap-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .roadmap-card p {
             font-size: 14px;
             color: var(--text-secondary);
             line-height: 1.6;
@@ -737,9 +896,9 @@
             margin: 0 auto 16px;
         }
 
-        .download-card.one .download-card-icon { background: var(--teal-bg); color: var(--teal); }
-        .download-card.connect .download-card-icon { background: rgba(74, 144, 164, 0.1); color: var(--connect-blue); }
-        .download-card.ops .download-card-icon { background: rgba(232, 114, 58, 0.1); color: var(--ops-orange); }
+        .download-card.one .download-card-icon { background: rgba(139, 92, 246, 0.1); color: var(--one-purple); }
+        .download-card.connect .download-card-icon { background: rgba(16, 185, 129, 0.1); color: var(--connect-green); }
+        .download-card.ops .download-card-icon { background: rgba(245, 158, 11, 0.1); color: var(--ops-orange); }
 
         .download-card h3 {
             font-size: 20px;
@@ -905,7 +1064,13 @@
 
         /* ===== Responsive ===== */
         @media (max-width: 1024px) {
-            .features-grid {
+            .eco-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .security-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .roadmap-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -933,17 +1098,19 @@
             .hero { padding: 120px 0 80px; }
             .hero-stats { gap: 24px; flex-wrap: wrap; }
 
-            .ps-grid { grid-template-columns: 1fr; }
-
-            .workflow-steps {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .workflow-steps::before { display: none; }
+            .vision-content { grid-template-columns: 1fr; gap: 40px; }
 
             .eco-grid { grid-template-columns: 1fr; }
 
-            .features-grid { grid-template-columns: 1fr; }
+            .flow-apps { grid-template-columns: 1fr; }
+            .flow-arrows { flex-direction: column; gap: 20px; }
+            .flow-arrows::before { display: none; }
+
+            .value-grid { grid-template-columns: 1fr; }
+
+            .security-grid { grid-template-columns: 1fr; }
+
+            .roadmap-grid { grid-template-columns: 1fr; }
 
             .download-grid { grid-template-columns: 1fr; }
 
@@ -970,10 +1137,10 @@
                 Pexis
             </a>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#solution">Giải pháp</a></li>
-                <li><a href="#workflow">Quy trình</a></li>
+                <li><a href="#vision">Tầm nhìn</a></li>
                 <li><a href="#ecosystem">Hệ sinh thái</a></li>
-                <li><a href="#features">Tính năng</a></li>
+                <li><a href="#value">Giá trị</a></li>
+                <li><a href="#security">Bảo mật</a></li>
                 <li><a href="#download" class="nav-cta">Tải về</a></li>
             </ul>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
@@ -986,183 +1153,93 @@
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero-badge fade-in">
-                <i data-lucide="sparkles" style="width:14px;height:14px"></i>
-                Nền tảng quản lý cho ngành in ấn
+                <i data-lucide="cpu" style="width:14px;height:14px"></i>
+                Operating System cho doanh nghiệp phân phối
             </div>
             <h1 class="fade-in fade-in-delay-1">
-                Quản lý toàn diện<br>từ <span>đơn hàng</span> đến <span>giao khách</span>
+                <span>Hệ điều hành</span> cho<br>doanh nghiệp phân phối
             </h1>
             <p class="hero-subtitle fade-in fade-in-delay-2">
-                Pexis kết nối lab in ấn, đại lý và nhân viên sản xuất trên một nền tảng duy nhất. Mọi thứ tự động, rõ ràng — tiết kiệm nhân sự, tăng hiệu suất.
+                Kết nối nhà cung cấp, đại lý và khách hàng trong một hệ thống thống nhất. Số hóa toàn bộ quy trình kinh doanh từ giao tiếp, xử lý đơn hàng đến quản lý vận hành.
             </p>
             <div class="hero-ctas fade-in fade-in-delay-3">
                 <a href="#download" class="btn btn-primary">
                     <i data-lucide="download" style="width:18px;height:18px"></i>
-                    Tải về ngay
+                    Tải ứng dụng
                 </a>
-                <a href="#workflow" class="btn btn-secondary">
-                    <i data-lucide="play-circle" style="width:18px;height:18px"></i>
-                    Xem quy trình
+                <a href="#ecosystem" class="btn btn-secondary">
+                    <i data-lucide="layers" style="width:18px;height:18px"></i>
+                    Khám phá hệ sinh thái
                 </a>
             </div>
             <div class="hero-stats fade-in fade-in-delay-4">
                 <div class="hero-stat">
-                    <div class="hero-stat-value">3</div>
-                    <div class="hero-stat-label">Ứng dụng đồng bộ</div>
+                    <div class="hero-stat-value">4</div>
+                    <div class="hero-stat-label">Thành phần đồng bộ</div>
                 </div>
                 <div class="hero-stat">
-                    <div class="hero-stat-value">6+</div>
-                    <div class="hero-stat-label">Nền tảng hỗ trợ</div>
+                    <div class="hero-stat-value">3</div>
+                    <div class="hero-stat-label">Vai trò sử dụng</div>
                 </div>
                 <div class="hero-stat">
                     <div class="hero-stat-value">100%</div>
-                    <div class="hero-stat-label">Dữ liệu bảo mật local</div>
+                    <div class="hero-stat-label">Dữ liệu bảo mật tập trung</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problems & Solutions -->
-    <section class="problems-section" id="solution">
+    <!-- Tầm nhìn -->
+    <section class="vision-section" id="vision">
         <div class="container">
-            <div class="section-header">
-                <div class="section-label fade-in">
-                    <i data-lucide="lightbulb" style="width:16px;height:16px"></i>
-                    Vấn đề & Giải pháp
-                </div>
-                <h2 class="section-title fade-in">Bạn đang quản lý lab theo cách nào?</h2>
-                <p class="section-subtitle fade-in">
-                    Hầu hết lab in ấn đang vận hành với quy trình thủ công, dễ sai sót và khó mở rộng
-                </p>
-            </div>
-            <div class="ps-grid">
-                <div class="ps-card fade-in">
-                    <div class="ps-card-header">
-                        <div class="ps-card-icon problem">
-                            <i data-lucide="alert-triangle" style="width:22px;height:22px"></i>
-                        </div>
-                        <div class="ps-card-title">Không có Pexis</div>
+            <div class="vision-content">
+                <div class="vision-text fade-in">
+                    <div class="section-label">
+                        <i data-lucide="telescope" style="width:16px;height:16px"></i>
+                        Tầm nhìn
                     </div>
-                    <ul class="ps-list problem">
-                        <li>
-                            <i data-lucide="x" style="width:16px;height:16px"></i>
-                            Nhận đơn qua Zalo, ghi giấy — dễ mất, khó tìm lại
-                        </li>
-                        <li>
-                            <i data-lucide="x" style="width:16px;height:16px"></i>
-                            Không biết đơn đang ở công đoạn nào, ai đang làm
-                        </li>
-                        <li>
-                            <i data-lucide="x" style="width:16px;height:16px"></i>
-                            File ảnh gửi qua tin nhắn bị nén, mất chất lượng
-                        </li>
-                        <li>
-                            <i data-lucide="x" style="width:16px;height:16px"></i>
-                            Tính công nhân viên thủ công, sai sót liên tục
-                        </li>
-                        <li>
-                            <i data-lucide="x" style="width:16px;height:16px"></i>
-                            Thu chi công nợ ghi sổ tay, không đối soát được
-                        </li>
-                        <li>
-                            <i data-lucide="x" style="width:16px;height:16px"></i>
-                            Cần nhiều nhân sự để phối hợp và điều phối
-                        </li>
-                    </ul>
+                    <h2>Pexis là gì?</h2>
+                    <p>
+                        Pexis là nền tảng quản lý vận hành và phân phối dành cho doanh nghiệp. Được thiết kế để số hóa toàn bộ quy trình kinh doanh, từ giao tiếp, xử lý đơn hàng đến quản lý dữ liệu và vận hành nội bộ.
+                    </p>
+                    <p>
+                        Hướng tới việc trở thành hệ điều hành cho doanh nghiệp phân phối, nơi mọi hoạt động được kết nối, đồng bộ và quản lý tập trung.
+                    </p>
                 </div>
-                <div class="ps-card fade-in fade-in-delay-1">
-                    <div class="ps-card-header">
-                        <div class="ps-card-icon solution">
-                            <i data-lucide="check-circle-2" style="width:22px;height:22px"></i>
+                <div class="vision-highlights">
+                    <div class="vision-highlight fade-in fade-in-delay-1">
+                        <div class="vision-highlight-icon">
+                            <i data-lucide="link" style="width:22px;height:22px"></i>
                         </div>
-                        <div class="ps-card-title">Có Pexis</div>
+                        <div>
+                            <h4>Kết nối thống nhất</h4>
+                            <p>Nhà cung cấp, đại lý và khách hàng hoạt động trên cùng một hệ thống, đồng bộ realtime.</p>
+                        </div>
                     </div>
-                    <ul class="ps-list solution">
-                        <li>
-                            <i data-lucide="check" style="width:16px;height:16px"></i>
-                            Đơn hàng chi tiết, rõ ràng — tìm kiếm, lọc ngay lập tức
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width:16px;height:16px"></i>
-                            Theo dõi sản xuất từng item, từng nhân viên real-time
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width:16px;height:16px"></i>
-                            Gửi file gốc cực nhanh, không nén — giữ nguyên chất lượng
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width:16px;height:16px"></i>
-                            Chấm công tự động, tính lương chính xác theo sản phẩm
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width:16px;height:16px"></i>
-                            Thu chi, công nợ, hóa đơn tự động — đối soát 1 click
-                        </li>
-                        <li>
-                            <i data-lucide="check" style="width:16px;height:16px"></i>
-                            Tiết kiệm nhân sự — mọi thứ tự động, kết nối liền mạch
-                        </li>
-                    </ul>
+                    <div class="vision-highlight fade-in fade-in-delay-2">
+                        <div class="vision-highlight-icon">
+                            <i data-lucide="scan-line" style="width:22px;height:22px"></i>
+                        </div>
+                        <div>
+                            <h4>Số hóa toàn diện</h4>
+                            <p>Từ đơn hàng, giao tiếp, báo cáo đến vận hành nội bộ — mọi thứ được số hóa và tự động.</p>
+                        </div>
+                    </div>
+                    <div class="vision-highlight fade-in fade-in-delay-3">
+                        <div class="vision-highlight-icon">
+                            <i data-lucide="database" style="width:22px;height:22px"></i>
+                        </div>
+                        <div>
+                            <h4>Quản lý tập trung</h4>
+                            <p>Toàn bộ dữ liệu nằm trong tay doanh nghiệp, không phụ thuộc bên thứ ba.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Workflow -->
-    <section id="workflow">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label fade-in">
-                    <i data-lucide="workflow" style="width:16px;height:16px"></i>
-                    Quy trình vận hành
-                </div>
-                <h2 class="section-title fade-in">Pexis bao phủ mọi bước trong quy trình</h2>
-                <p class="section-subtitle fade-in">
-                    Từ lúc khách đặt hàng đến khi giao thành phẩm — mọi công đoạn đều được quản lý chặt chẽ
-                </p>
-            </div>
-            <div class="workflow-steps">
-                <div class="workflow-step fade-in">
-                    <div class="workflow-step-num">1</div>
-                    <div class="workflow-step-icon">
-                        <i data-lucide="shopping-cart" style="width:28px;height:28px"></i>
-                    </div>
-                    <div class="workflow-step-title">Khách đặt hàng</div>
-                    <div class="workflow-step-desc">Đại lý tạo đơn, gửi file thiết kế, chat trực tiếp với lab</div>
-                    <div class="workflow-step-app">PexisConnect</div>
-                </div>
-                <div class="workflow-step fade-in fade-in-delay-1">
-                    <div class="workflow-step-num">2</div>
-                    <div class="workflow-step-icon">
-                        <i data-lucide="clipboard-check" style="width:28px;height:28px"></i>
-                    </div>
-                    <div class="workflow-step-title">Lab tiếp nhận</div>
-                    <div class="workflow-step-desc">Xác nhận đơn, duyệt file, phân công sản xuất, tạo hóa đơn</div>
-                    <div class="workflow-step-app">PexisOne</div>
-                </div>
-                <div class="workflow-step fade-in fade-in-delay-2">
-                    <div class="workflow-step-num">3</div>
-                    <div class="workflow-step-icon">
-                        <i data-lucide="cog" style="width:28px;height:28px"></i>
-                    </div>
-                    <div class="workflow-step-title">Sản xuất</div>
-                    <div class="workflow-step-desc">Nhân viên nhận việc, cập nhật tiến độ từng công đoạn</div>
-                    <div class="workflow-step-app">PexisOps</div>
-                </div>
-                <div class="workflow-step fade-in fade-in-delay-3">
-                    <div class="workflow-step-num">4</div>
-                    <div class="workflow-step-icon">
-                        <i data-lucide="truck" style="width:28px;height:28px"></i>
-                    </div>
-                    <div class="workflow-step-title">Giao hàng</div>
-                    <div class="workflow-step-desc">Hoàn thành đơn, gửi thông báo cho khách, cập nhật công nợ</div>
-                    <div class="workflow-step-app">PexisOne</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ecosystem -->
+    <!-- Hệ sinh thái -->
     <section class="ecosystem-section" id="ecosystem">
         <div class="container">
             <div class="section-header">
@@ -1170,147 +1247,299 @@
                     <i data-lucide="boxes" style="width:16px;height:16px"></i>
                     Hệ sinh thái
                 </div>
-                <h2 class="section-title fade-in">3 ứng dụng, 1 hệ thống đồng bộ</h2>
+                <h2 class="section-title fade-in">4 thành phần, 1 nền tảng thống nhất</h2>
                 <p class="section-subtitle fade-in">
-                    Mỗi ứng dụng phục vụ một vai trò cụ thể, kết nối liền mạch trong cùng hệ sinh thái
+                    Mỗi thành phần phục vụ một vai trò cụ thể, kết nối liền mạch trong cùng hệ sinh thái Pexis
                 </p>
             </div>
             <div class="eco-grid">
-                <!-- PexisOne -->
-                <div class="eco-card one fade-in">
+                <!-- PexisCore -->
+                <div class="eco-card core fade-in">
+                    <div class="eco-card-icon">
+                        <i data-lucide="server" style="width:26px;height:26px"></i>
+                    </div>
                     <div class="eco-card-badge">
-                        <i data-lucide="building-2" style="width:12px;height:12px"></i>
-                        Nhà cung cấp
+                        <i data-lucide="cpu" style="width:12px;height:12px"></i>
+                        Backend trung tâm
                     </div>
-                    <div class="eco-card-title">PexisOne</div>
-                    <div class="eco-card-who">Cho lab owner, manager</div>
+                    <div class="eco-card-title">PexisCore</div>
+                    <div class="eco-card-who">Hạ tầng xử lý &amp; đồng bộ</div>
                     <ul class="eco-card-features">
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Quản lý đơn hàng & hóa đơn</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Theo dõi sản xuất chi tiết</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Chat real-time với đại lý</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Nhân sự, chấm công, lương</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Thu chi, công nợ tự động</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Quản lý kho hàng</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Lưu trữ và xử lý dữ liệu tập trung</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Đồng bộ realtime giữa các ứng dụng</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Bảo mật và phân quyền truy cập</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Xử lý logic nghiệp vụ</li>
                     </ul>
-                    <div class="eco-card-platforms">
-                        <span class="eco-platform"><i data-lucide="monitor" style="width:12px;height:12px"></i> Windows</span>
-                        <span class="eco-platform"><i data-lucide="laptop" style="width:12px;height:12px"></i> macOS</span>
-                        <span class="eco-platform"><i data-lucide="smartphone" style="width:12px;height:12px"></i> iOS & Android</span>
-                    </div>
                 </div>
 
-                <!-- PexisConnect -->
-                <div class="eco-card connect fade-in fade-in-delay-1">
+                <!-- PexisOne -->
+                <div class="eco-card one fade-in fade-in-delay-1">
+                    <div class="eco-card-icon">
+                        <i data-lucide="building-2" style="width:26px;height:26px"></i>
+                    </div>
                     <div class="eco-card-badge">
-                        <i data-lucide="users" style="width:12px;height:12px"></i>
-                        Đại lý / Khách hàng
+                        <i data-lucide="crown" style="width:12px;height:12px"></i>
+                        Quản lý &amp; điều hành
                     </div>
-                    <div class="eco-card-title">PexisConnect</div>
-                    <div class="eco-card-who">Cho đại lý, studio, tiệm ảnh</div>
+                    <div class="eco-card-title">PexisOne</div>
+                    <div class="eco-card-who">Cho nhà quản lý, chủ doanh nghiệp</div>
                     <ul class="eco-card-features">
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Đặt hàng nhanh chóng</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Gửi file thiết kế gốc</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Chat trực tiếp với lab</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Theo dõi tiến độ đơn hàng</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Xem hóa đơn, công nợ</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Tích điểm khách hàng</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Theo dõi kinh doanh tổng thể</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Quản lý đơn hàng &amp; đại lý</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Phân tích báo cáo chi tiết</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Cấu hình hệ thống</li>
                     </ul>
-                    <div class="eco-card-platforms">
-                        <span class="eco-platform"><i data-lucide="monitor" style="width:12px;height:12px"></i> Windows</span>
-                        <span class="eco-platform"><i data-lucide="laptop" style="width:12px;height:12px"></i> macOS</span>
-                        <span class="eco-platform"><i data-lucide="smartphone" style="width:12px;height:12px"></i> iOS & Android</span>
-                    </div>
                 </div>
 
                 <!-- PexisOps -->
                 <div class="eco-card ops fade-in fade-in-delay-2">
+                    <div class="eco-card-icon">
+                        <i data-lucide="hard-hat" style="width:26px;height:26px"></i>
+                    </div>
                     <div class="eco-card-badge">
-                        <i data-lucide="hard-hat" style="width:12px;height:12px"></i>
-                        Nhân viên sản xuất
+                        <i data-lucide="cog" style="width:12px;height:12px"></i>
+                        Vận hành hàng ngày
                     </div>
                     <div class="eco-card-title">PexisOps</div>
-                    <div class="eco-card-who">Cho nhân viên tại xưởng</div>
+                    <div class="eco-card-who">Cho nhân viên vận hành</div>
                     <ul class="eco-card-features">
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Nhận việc theo công đoạn</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Cập nhật tiến độ sản xuất</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Chấm công hàng ngày</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Xem lịch sử công việc</li>
-                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Thông báo việc mới</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Xử lý đơn hàng nhanh chóng</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Giao tiếp với khách hàng</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Theo dõi công việc cá nhân</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Quy trình vận hành hàng ngày</li>
                     </ul>
-                    <div class="eco-card-platforms">
-                        <span class="eco-platform"><i data-lucide="smartphone" style="width:12px;height:12px"></i> iOS</span>
-                        <span class="eco-platform"><i data-lucide="smartphone" style="width:12px;height:12px"></i> Android</span>
+                </div>
+
+                <!-- PexisConnect -->
+                <div class="eco-card connect fade-in fade-in-delay-3">
+                    <div class="eco-card-icon">
+                        <i data-lucide="users" style="width:26px;height:26px"></i>
                     </div>
+                    <div class="eco-card-badge">
+                        <i data-lucide="handshake" style="width:12px;height:12px"></i>
+                        Khách hàng &amp; đối tác
+                    </div>
+                    <div class="eco-card-title">PexisConnect</div>
+                    <div class="eco-card-who">Cho khách hàng, đối tác</div>
+                    <ul class="eco-card-features">
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Tạo &amp; theo dõi đơn hàng</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Giao tiếp trực tiếp</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Nhận thông báo tức thì</li>
+                        <li><i data-lucide="check" style="width:14px;height:14px"></i> Lịch sử giao dịch đầy đủ</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section id="features">
+    <!-- Luồng hoạt động -->
+    <section class="flow-section" id="flow">
         <div class="container">
             <div class="section-header">
                 <div class="section-label fade-in">
-                    <i data-lucide="grid-3x3" style="width:16px;height:16px"></i>
-                    Tính năng chi tiết
+                    <i data-lucide="workflow" style="width:16px;height:16px"></i>
+                    Luồng hoạt động
                 </div>
-                <h2 class="section-title fade-in">Mọi thứ bạn cần để vận hành lab</h2>
+                <h2 class="section-title fade-in">PexisCore — trung tâm kết nối mọi thứ</h2>
                 <p class="section-subtitle fade-in">
-                    Từ chat với khách đến quản lý nhân sự — tất cả trong một hệ thống
+                    Mọi dữ liệu, mọi hành động đều đi qua PexisCore, đảm bảo đồng bộ và nhất quán trên toàn hệ thống
                 </p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i data-lucide="message-circle" style="width:22px;height:22px"></i>
+            <div class="flow-diagram">
+                <div class="flow-apps fade-in">
+                    <div class="flow-app one">
+                        <div class="flow-app-icon">
+                            <i data-lucide="building-2" style="width:24px;height:24px"></i>
+                        </div>
+                        <h4>PexisOne</h4>
+                        <p>Quản lý &amp; điều hành</p>
                     </div>
-                    <h3>Chat real-time</h3>
-                    <p>Trao đổi trực tiếp giữa lab và đại lý. Gửi tin nhắn, hình ảnh, file ngay trong ứng dụng.</p>
-                </div>
-                <div class="feature-card fade-in fade-in-delay-1">
-                    <div class="feature-icon">
-                        <i data-lucide="send" style="width:22px;height:22px"></i>
+                    <div class="flow-app ops">
+                        <div class="flow-app-icon">
+                            <i data-lucide="hard-hat" style="width:24px;height:24px"></i>
+                        </div>
+                        <h4>PexisOps</h4>
+                        <p>Vận hành hàng ngày</p>
                     </div>
-                    <h3>Gửi file cực nhanh</h3>
-                    <p>Truyền file thiết kế gốc không nén, giữ nguyên chất lượng. Hỗ trợ mọi định dạng.</p>
-                </div>
-                <div class="feature-card fade-in fade-in-delay-2">
-                    <div class="feature-icon">
-                        <i data-lucide="factory" style="width:22px;height:22px"></i>
+                    <div class="flow-app connect">
+                        <div class="flow-app-icon">
+                            <i data-lucide="users" style="width:24px;height:24px"></i>
+                        </div>
+                        <h4>PexisConnect</h4>
+                        <p>Khách hàng &amp; đối tác</p>
                     </div>
-                    <h3>Quản lý sản xuất</h3>
-                    <p>Theo dõi từng item, từng công đoạn, từng nhân viên. Biết chính xác tiến độ sản xuất.</p>
                 </div>
-                <div class="feature-card fade-in fade-in-delay-3">
-                    <div class="feature-icon">
-                        <i data-lucide="users" style="width:22px;height:22px"></i>
+                <div class="flow-arrows fade-in fade-in-delay-1">
+                    <div class="flow-arrow">
+                        <i data-lucide="arrow-down-up" style="width:20px;height:20px" class="flow-arrow-icon"></i>
                     </div>
-                    <h3>Nhân sự & chấm công</h3>
-                    <p>Quản lý nhân viên, chấm công tự động, tính lương theo sản phẩm hoặc theo ngày.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">
-                        <i data-lucide="receipt" style="width:22px;height:22px"></i>
+                    <div class="flow-arrow">
+                        <i data-lucide="arrow-down-up" style="width:20px;height:20px" class="flow-arrow-icon"></i>
                     </div>
-                    <h3>Thu chi & công nợ</h3>
-                    <p>Hóa đơn tự động, theo dõi công nợ từng đại lý, đối soát thu chi nhanh chóng.</p>
-                </div>
-                <div class="feature-card fade-in fade-in-delay-1">
-                    <div class="feature-icon">
-                        <i data-lucide="shield-check" style="width:22px;height:22px"></i>
+                    <div class="flow-arrow">
+                        <i data-lucide="arrow-down-up" style="width:20px;height:20px" class="flow-arrow-icon"></i>
                     </div>
-                    <h3>Phân quyền linh hoạt</h3>
-                    <p>Tạo tài khoản cho từng nhân viên, phân quyền truy cập theo vai trò cụ thể.</p>
                 </div>
-                <div class="feature-card fade-in fade-in-delay-2">
-                    <div class="feature-icon">
+                <div class="flow-core fade-in fade-in-delay-2">
+                    <div class="flow-core-icon">
+                        <i data-lucide="server" style="width:32px;height:32px"></i>
+                    </div>
+                    <h3>PexisCore</h3>
+                    <p>Lưu trữ, xử lý logic, đồng bộ realtime, bảo mật phân quyền — toàn bộ hạ tầng vận hành tại đây</p>
+                </div>
+                <div class="flow-data-labels fade-in fade-in-delay-3">
+                    <span class="flow-data-label">
+                        <i data-lucide="zap" style="width:12px;height:12px"></i>
+                        Realtime sync
+                    </span>
+                    <span class="flow-data-label">
+                        <i data-lucide="shield" style="width:12px;height:12px"></i>
+                        Bảo mật end-to-end
+                    </span>
+                    <span class="flow-data-label">
+                        <i data-lucide="refresh-cw" style="width:12px;height:12px"></i>
+                        Tự động đồng bộ
+                    </span>
+                    <span class="flow-data-label">
+                        <i data-lucide="lock" style="width:12px;height:12px"></i>
+                        Phân quyền vai trò
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Giá trị mang lại -->
+    <section id="value">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">
+                    <i data-lucide="gem" style="width:16px;height:16px"></i>
+                    Giá trị mang lại
+                </div>
+                <h2 class="section-title fade-in">Giá trị cho mọi vai trò trong hệ thống</h2>
+                <p class="section-subtitle fade-in">
+                    Pexis tối ưu hóa trải nghiệm cho doanh nghiệp, nhân viên và khách hàng
+                </p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card fade-in">
+                    <div class="value-card-icon">
+                        <i data-lucide="building" style="width:26px;height:26px"></i>
+                    </div>
+                    <h3>Doanh nghiệp</h3>
+                    <ul class="value-card-list">
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Quản lý tập trung toàn bộ hoạt động
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Giảm phụ thuộc phần mềm bên thứ ba
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Tối ưu vận hành, giảm chi phí
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Nắm toàn bộ dữ liệu doanh nghiệp
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Tiết kiệm nhân sự, tăng hiệu suất
+                        </li>
+                    </ul>
+                </div>
+                <div class="value-card fade-in fade-in-delay-1">
+                    <div class="value-card-icon">
+                        <i data-lucide="user-check" style="width:26px;height:26px"></i>
+                    </div>
+                    <h3>Nhân viên</h3>
+                    <ul class="value-card-list">
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Làm việc nhanh và rõ ràng hơn
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Giảm thao tác thủ công
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Quy trình chuẩn, dễ thực hiện
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Tăng năng suất cá nhân
+                        </li>
+                    </ul>
+                </div>
+                <div class="value-card fade-in fade-in-delay-2">
+                    <div class="value-card-icon">
+                        <i data-lucide="heart-handshake" style="width:26px;height:26px"></i>
+                    </div>
+                    <h3>Khách hàng</h3>
+                    <ul class="value-card-list">
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Đặt hàng minh bạch, dễ dàng
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Theo dõi đơn hàng trực quan
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Giao tiếp nhanh chóng, trực tiếp
+                        </li>
+                        <li>
+                            <i data-lucide="check" style="width:16px;height:16px"></i>
+                            Lịch sử giao dịch đầy đủ, rà soát bất kỳ lúc nào
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bảo mật -->
+    <section class="security-section" id="security">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">
+                    <i data-lucide="shield-check" style="width:16px;height:16px"></i>
+                    Bảo mật
+                </div>
+                <h2 class="section-title fade-in">Bảo mật cấp doanh nghiệp</h2>
+                <p class="section-subtitle fade-in">
+                    Dữ liệu của bạn được bảo vệ nghiêm ngặt với các tiêu chuẩn bảo mật hàng đầu
+                </p>
+            </div>
+            <div class="security-grid">
+                <div class="security-card fade-in">
+                    <div class="security-icon">
+                        <i data-lucide="key-round" style="width:22px;height:22px"></i>
+                    </div>
+                    <h3>Phân quyền theo vai trò</h3>
+                    <p>Mỗi người dùng chỉ truy cập đúng quyền hạn được cấp. Quản lý chi tiết đến từng chức năng.</p>
+                </div>
+                <div class="security-card fade-in fade-in-delay-1">
+                    <div class="security-icon">
                         <i data-lucide="database" style="width:22px;height:22px"></i>
                     </div>
-                    <h3>Dữ liệu bảo mật local</h3>
-                    <p>Dữ liệu lưu trữ trên máy của bạn, kết nối HTTPS bảo mật. Không phụ thuộc server bên thứ ba.</p>
+                    <h3>Dữ liệu tập trung</h3>
+                    <p>Toàn bộ dữ liệu lưu trữ tập trung, kiểm soát hoàn toàn bởi doanh nghiệp, không phụ thuộc bên thứ ba.</p>
                 </div>
-                <div class="feature-card fade-in fade-in-delay-3">
-                    <div class="feature-icon">
+                <div class="security-card fade-in fade-in-delay-2">
+                    <div class="security-icon">
+                        <i data-lucide="refresh-cw" style="width:22px;height:22px"></i>
+                    </div>
+                    <h3>Đồng bộ an toàn</h3>
+                    <p>Dữ liệu đồng bộ realtime giữa các ứng dụng với kết nối mã hóa, đảm bảo tính toàn vẹn.</p>
+                </div>
+                <div class="security-card fade-in fade-in-delay-3">
+                    <div class="security-icon">
                         <i data-lucide="monitor-smartphone" style="width:22px;height:22px"></i>
                     </div>
                     <h3>Đa nền tảng</h3>
@@ -1320,7 +1549,53 @@
         </div>
     </section>
 
-    <!-- Download -->
+    <!-- Định hướng phát triển -->
+    <section id="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label fade-in">
+                    <i data-lucide="compass" style="width:16px;height:16px"></i>
+                    Định hướng phát triển
+                </div>
+                <h2 class="section-title fade-in">Tương lai của Pexis</h2>
+                <p class="section-subtitle fade-in">
+                    Không ngừng cải tiến để mang lại giá trị lớn hơn cho doanh nghiệp
+                </p>
+            </div>
+            <div class="roadmap-grid">
+                <div class="roadmap-card fade-in">
+                    <div class="roadmap-icon">
+                        <i data-lucide="bot" style="width:26px;height:26px"></i>
+                    </div>
+                    <h3>Tự động hóa</h3>
+                    <p>Tự động xử lý các tác vụ lặp đi lặp lại, giảm thiểu thao tác thủ công trong vận hành.</p>
+                </div>
+                <div class="roadmap-card fade-in fade-in-delay-1">
+                    <div class="roadmap-icon">
+                        <i data-lucide="bar-chart-3" style="width:26px;height:26px"></i>
+                    </div>
+                    <h3>Phân tích nâng cao</h3>
+                    <p>Báo cáo chi tiết, phân tích xu hướng, dự báo kinh doanh dựa trên dữ liệu thực.</p>
+                </div>
+                <div class="roadmap-card fade-in fade-in-delay-2">
+                    <div class="roadmap-icon">
+                        <i data-lucide="sparkles" style="width:26px;height:26px"></i>
+                    </div>
+                    <h3>Tích hợp AI</h3>
+                    <p>Ứng dụng trí tuệ nhân tạo để tối ưu quy trình, dự đoán nhu cầu và hỗ trợ ra quyết định.</p>
+                </div>
+                <div class="roadmap-card fade-in fade-in-delay-3">
+                    <div class="roadmap-icon">
+                        <i data-lucide="globe" style="width:26px;height:26px"></i>
+                    </div>
+                    <h3>Đa doanh nghiệp</h3>
+                    <p>Mở rộng hỗ trợ nhiều doanh nghiệp trên cùng nền tảng, chia sẻ tài nguyên và hợp tác.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tải về -->
     <section class="download-section" id="download">
         <div class="container">
             <div class="section-header">
@@ -1328,9 +1603,9 @@
                     <i data-lucide="download" style="width:16px;height:16px"></i>
                     Tải về
                 </div>
-                <h2 class="section-title fade-in">Bắt đầu sử dụng Pexis ngay</h2>
+                <h2 class="section-title fade-in">Bắt đầu sử dụng Pexis</h2>
                 <p class="section-subtitle fade-in">
-                    Tải ứng dụng phù hợp với vai trò của bạn
+                    Tải ứng dụng phù hợp với vai trò của bạn trong hệ thống
                 </p>
             </div>
             <div class="download-grid">
@@ -1340,7 +1615,7 @@
                         <i data-lucide="building-2" style="width:28px;height:28px"></i>
                     </div>
                     <h3>PexisOne</h3>
-                    <div class="download-card-who">Cho nhà cung cấp</div>
+                    <div class="download-card-who">Cho nhà quản lý, chủ doanh nghiệp</div>
                     <div class="download-platforms">
                         <div class="download-platform">
                             <span class="download-platform-info">
@@ -1385,7 +1660,7 @@
                         <i data-lucide="users" style="width:28px;height:28px"></i>
                     </div>
                     <h3>PexisConnect</h3>
-                    <div class="download-card-who">Cho đại lý / khách hàng</div>
+                    <div class="download-card-who">Cho khách hàng, đối tác</div>
                     <div class="download-platforms">
                         <div class="download-platform">
                             <span class="download-platform-info">
@@ -1430,7 +1705,7 @@
                         <i data-lucide="hard-hat" style="width:28px;height:28px"></i>
                     </div>
                     <h3>PexisOps</h3>
-                    <div class="download-card-who">Cho nhân viên sản xuất</div>
+                    <div class="download-card-who">Cho nhân viên vận hành</div>
                     <div class="download-platforms">
                         <div class="download-platform">
                             <span class="download-platform-info">
@@ -1462,24 +1737,27 @@
                         Pexis
                     </div>
                     <p class="footer-desc">
-                        Nền tảng quản lý toàn diện cho ngành in ấn. Kết nối lab, đại lý và nhân viên sản xuất trên một hệ thống duy nhất.
+                        Nền tảng quản lý vận hành và phân phối dành cho doanh nghiệp. Kết nối nhà cung cấp, đại lý và khách hàng trong một hệ thống thống nhất.
                     </p>
                 </div>
                 <div class="footer-col">
                     <h4>Sản phẩm</h4>
                     <ul>
+                        <li><a href="#ecosystem">PexisCore</a></li>
                         <li><a href="#ecosystem">PexisOne</a></li>
-                        <li><a href="#ecosystem">PexisConnect</a></li>
                         <li><a href="#ecosystem">PexisOps</a></li>
+                        <li><a href="#ecosystem">PexisConnect</a></li>
                         <li><a href="#download">Tải về</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Tìm hiểu</h4>
                     <ul>
-                        <li><a href="#solution">Giải pháp</a></li>
-                        <li><a href="#workflow">Quy trình</a></li>
-                        <li><a href="#features">Tính năng</a></li>
+                        <li><a href="#vision">Tầm nhìn</a></li>
+                        <li><a href="#flow">Luồng hoạt động</a></li>
+                        <li><a href="#value">Giá trị</a></li>
+                        <li><a href="#security">Bảo mật</a></li>
+                        <li><a href="#roadmap">Định hướng</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
